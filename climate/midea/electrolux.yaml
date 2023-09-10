@@ -7,9 +7,9 @@ climate:
     autoconf: false
     supported_modes:
       - FAN_ONLY
-      - HEAT_COOL
+      #- HEAT_COOL
       - COOL
-      - HEAT
+      #- HEAT
       - DRY
     supported_presets:
       - SLEEP

@@ -1,17 +1,17 @@
 substitutions:
-  name: cabinet-ac
-  friendly_name: Cabinet Climate
+  name: oficina-ac
+  friendly_name: Oficina A/C
   # HomeAssistant sensor for use as FollowMe temperature source (must be uncommented package option, see below)
-  #follow_me_sensor: sensor.bedroom_temperature
+  #follow_me_sensor: sensor.oficina_temperature
   # Wi-Fi AP password in safe mode. Default: "12345678"
   #ap_password: !secret ap_password
   # Network domain. Default: .local
   #domain: !secret domain
-  # HomeAssistant API key. Default: sOsBobs9D/bNFOBZ5GFr+TuHdMbYMntmDNXt5F/3lk0=
-  #api_key: !secret api_key
+    # HomeAssistant API key. Default: sOsBobs9D/bNFOBZ5GFr+TuHdMbYMntmDNXt5F/3lk0=
+  api_key: !secret api_key_ac
   # OTA firmware update password. Default: no password
-  #ota_password: !secret ota_password
-
+  ota_password: !secret ota_password 
+  
 wifi:
   # Your SSID name. Must be located in 'secrets.yaml' file.
   ssid: !secret wifi_ssid
@@ -20,6 +20,7 @@ wifi:
   # Uncomment on the first firmware update.
   #use_address: iot-uni-dongle.local
 
+
 esphome:
   project:
     name: "dudanov.midea-ac-control"
@@ -27,13 +28,13 @@ esphome:
 
 packages:
   remote_package:
-    url: https://github.com/dudanov/esphome-packages
+    url: https://github.com/airdogez/esphome-packages
     refresh: 0d
     files: [
       # Main dongle package
       hardware/iot-uni-dongle/device.yaml,
       # IR remote transmitter (IR- pad connected to TSOP output of controlled device)
-      hardware/iot-uni-dongle/remote/tsop.yaml,
+      #hardware/iot-uni-dongle/remote/tsop.yaml,
       # IR remote transmitter (IR LED between IR+ and IR- pads)
       #hardware/iot-uni-dongle/remote/led.yaml,
       # Electrolux EACS. Select your model HERE.
@@ -42,7 +43,7 @@ packages:
       # "Flash" button. Run `button_click` script on click.
       hardware/iot-uni-dongle/button.yaml,
       # Toggles power on button click. (Not working yet. Support will be in next ESPHome release 2022.6)
-      climate/midea/common/button_action/power.yaml,
+      #climate/midea/common/button_action/power.yaml,
 
       # "Beeper feedback" switch
       climate/midea/common/beeper.yaml,
@@ -51,7 +52,7 @@ packages:
       # "Swing step" button. Works only via IR transmitter.
       climate/midea/common/swing.yaml,
       # "FollowMe" capability via HomeAssistant service.
-      climate/midea/common/follow_me/service.yaml,
+      #climate/midea/common/follow_me/service.yaml,
       # "FollowMe" capability via HomeAssistant sensor.
       # Sensor entity name setting up via ${follow_me_sensor} substitution.
       #climate/midea/common/follow_me/sensor.yaml,
